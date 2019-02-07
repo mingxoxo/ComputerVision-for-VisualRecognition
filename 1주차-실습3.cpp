@@ -228,7 +228,7 @@ int main()
 	Image_feature Image_feature;
 
 
-	String folderpath = "D:/ForTA/imagestitching/imagestitching/test";
+	String folderpath = "폴더경로입력";
 	vector<String> filenames;
 	glob(folderpath, filenames);
 
