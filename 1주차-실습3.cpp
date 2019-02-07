@@ -80,19 +80,6 @@ double find_matches_percent(Image_feature img1, Image_feature img2)
 	}
 	
 
-	//좋은 매칭 걸러내기 방법 2 -> BFMatcher
-	/*
-	for (int i = 0; i < matches.size(); ++i)
-	{
-		const float ratio = 0.7; // As in Lowe's paper; can be tuned
-		if (matches[i][0].distance < ratio * matches[i][1].distance)
-		{
-			good_matches.push_back(matches[i][0]);
-		}
-		if (i == matches.size() - 1) break;
-	}
-	*/
-
 	vector<Point2f> img1_pt;
 	vector<Point2f> img2_pt;
 
@@ -139,33 +126,6 @@ Mat panorama_stiching(Image_feature img1, Image_feature img2)
 	//BFMatch
 	BFMatcher matcher;
 	matcher.knnMatch(img1.descriptors, img2.descriptors, matches, 2); // Find two nearest matches
-
-	//좋은 매칭 걸러내기 방법 1 -> Flann
-	/*
-	double dMaxDist = 0;
-	double dMinDist = 100;
-	double dDistance;
-
-
-	for (int i = 0; i < img1.descriptors.rows; i++)
-	{
-		dDistance = matches[i].distance;
-
-		if (dDistance < dMinDist) dMinDist = dDistance;
-		if (dDistance > dMaxDist) dMaxDist = dDistance;
-
-	}
-	cout << "Max :" << dMaxDist << endl;
-	cout << "Min :" << dMinDist << endl;
-
-	for (int i = 0; i < img1_descriptors.rows; i++)
-	{
-		if (matches[i].distance < 3 * dMinDist)
-		{
-			good_matches.push_back(matches[i]);
-		}
-	}
-	*/
 
 	//좋은 매칭 걸러내기 방법 2 -> BFMatcher
 
